@@ -1,0 +1,218 @@
+#! /usr/bin/python
+# work on making it so after runing one task it goes back to menu, forloop
+
+import commands, os, string
+import sys
+import fileinput
+      
+def print_menu():       ## Your menu design here
+    print 20 * "-" , "Perform ALL of Below steps in Order to Install and Configure TSM." , 20 * "-"
+    print "1. Install Tivoli Storage Manager"
+    print "2. Update dsm.opt File"
+    print "3. Update dsm.sys File"
+    print "4. Log into TSM Server and Register Node"
+    print "5. Start Dsmcad Process and Verify it is Running"
+    print "6. Quit Program"
+    print 67 * "-"
+  
+loop=True      
+
+print """
+    	    
+ __          __  _                                            
+ \ \        / / | |                                           
+  \ \  /\  / /__| | ___ ___  _ __ ___   ___                   
+   \ \/  \/ / _ \ |/ __/ _ \| '_ ` _ \ / _ \                  
+    \  /\  /  __/ | (_| (_) | | | | | |  __/                  
+  _  \/  \/ \___|_|\___\___/|_| |_| |_|\___|____ _____ __  __ 
+ | |        | |    (_)                  |__   __/ ____|  \/  |
+ | |_ ___   | |     _ _ __  _   ___  __    | | | (___ | \  / |
+ | __/ _ \  | |    | | '_ \| | | \ \/ /    | |  \___ \| |\/| |
+ | || (_) | | |____| | | | | |_| |>  <     | |  ____) | |  | |
+  \__\___/  |______|_|_| |_|\__,_/_/\_\  _ |_| |_____/|_|  |_|
+ |_   _|         | |      | | |     | | (_)                   
+   | |  _ __  ___| |_ __ _| | | __ _| |_ _  ___  _ __         
+   | | | '_ \/ __| __/ _` | | |/ _` | __| |/ _ \| '_ \        
+  _| |_| | | \__ \ || (_| | | | (_| | |_| | (_) | | | |       
+ |_____|_| |_|___/\__\__,_|_|_|\__,_|\__|_|\___/|_| |_|       
+                                                              
+                                                          
+"""
+
+while loop:          ## While loop which will keep going until loop = False
+    print_menu()    ## Displays menu
+    choice = input("Enter your choice [1-6]: ")
+    
+    if choice==1:
+        print "The version of TSM to install depends on the version of the Linux system."
+        print "v6 and v7 will need to have TSM 7.1.2 installed"
+        print "v5 will need to have TSM 7.1.0 installed"
+        
+        TSMVersion = raw_input("Please Linux Version (v5, v6 or v7): ")
+        
+        if TSMVersion == "v5":
+            output = commands.getoutput("df")
+            proginfo = string.split(output)
+            print output
+            print 67 * "-" 
+            print """
+ _____________________________________________ 
+| Please review above Install Log and verify  |
+| TSM installed successfully with no errors.  |
+| And then proceed to Step 2 Update dsm.opt   |
+| File. If any errors exist, please quit      |
+| and see Backup Admin for assistance         |
+ --------------------------------------------- 
+   \
+    \
+      _____   _________
+     /     \_/         |
+    |                 ||
+    |                 ||
+   |    ###\  /###   | |
+   |     0  \/  0    | |
+  /|                 | |
+ / |        <        |\ \
+| /|                 | | |
+| |     \_______/   |  | |
+| |                 | / /
+/||                 /|||
+   ----------------|
+        | |    | |
+        ***    ***
+       /___\  /___\
+    """
+            print 67 * "-"
+        elif TSMVersion == "v6":
+            output = commands.getoutput("uname -a")
+            proginfo = string.split(output)
+            print output
+        elif TSMVersion == "v7":
+    		output = commands.getoutput("hostname")
+    		proginfo = string.split(output)
+    		print output    	
+    	else:
+			print """
+    	    
+ ____________________________________________ 
+| Incorrect Value or Issue with TSM, please  |
+| see Backup Admin for help.                 |
+ -------------------------------------------- 
+  \
+   \
+  __
+      UooU\.'@@@@@@`.
+      \__/(@@@@@@@@@@)
+           (@@@@@@@@)
+           `YY~~~~YY'
+            ||    ||
+
+"""
+
+    elif choice==2:
+		textToSearch = "<server>" 
+		print ("Please type in the TSM Servername (without domain) that this host will backup to:")
+		textToReplace = raw_input( "Enter TSM servername (OR Ctrl + c to Quit): " )
+
+		print """
+_______________________________________________________________ 
+| Updated dsm.opt file successfully! Please proceed to step 3. |
+ -------------------------------------------------------------- 
+\                             .       .
+ \                           / `.   .' "
+  \                  .---.  <    > <    >  .---.
+   \                 |    \  \ - ~ ~ - /  /    |
+    \    _____          ..-~             ~-..-~
+        |     |   \~~~\.'                    `./~~~/
+       ---------   \__/                        \__/
+      .'  O    \     /               /       \  "
+     (_____,    `._.'               |         }  \/~~~/
+      `----.          /       }     |        /    \__/
+            `-.      |       /      |       /      `. ,~~|
+                ~-.__|      /_ - ~ ^|      /- _      `..-'
+                     |     /        |     /     ~-.     `-. _  _  _
+                     |_____|        |_____|         ~ - . _ _ _ _ _>
+                     
+"""
+                     
+		fileToSearch  = "/Users/e0126914/Desktop/FinalizedPythonScripts/dsm.opt"
+
+		tempFile = open( fileToSearch, 'r+' )
+
+		for line in fileinput.input(fileToSearch, inplace=True):
+			print line.replace(textToSearch, textToReplace),
+		
+    elif choice==3:
+		textToSearch = "hostname" 
+		print ("Enter TSM Hostname (without domain) or registering nodename:")
+		textToReplace = raw_input( "Please Enter Hostname/Nodename (OR Ctrl + c to Quit): " )
+
+		print """
+		
+  ____________________________________________ 
+| Updated dsm.sys file successfully! Please  |
+| proceed to step 4.                         |
+ -------------------------------------------- 
+ \     /\  ___  /\
+  \   // \/   \/ \\
+     ((    O O    ))
+      \\ /     \ //
+       \/  | |  \/
+        |  | |  |
+        |  | |  |
+        |   o   |
+        | |   | |
+        |m|   |m|
+        
+""" 
+
+		fileToSearch  = "/Users/e0126914/Desktop/FinalizedPythonScripts/dsm.sys"
+
+		tempFile = open( fileToSearch, 'r+' )
+
+		for line in fileinput.input(fileToSearch, inplace=True):
+			print line.replace(textToSearch, textToReplace),
+	
+    elif choice==4:
+    	try:
+    		tsmserver = raw_input("Enter the TSM Instance to log into: ")
+    		output = os.system('/opt/tivoli/tsm/client/ba/bin/dsmadmc -se='+tsmserver +
+    		' -id=itoadmin -pass=itoadmin')
+    	except:
+    		print "That did not work!"
+    
+    elif choice==5:
+    	try:
+    		output = os.system('sudo service tsm start')
+    		output = os.system('ps -ef |grep dsm')
+    	except:
+    		print "That did not work!"
+    		
+    elif choice==6:
+        print """
+    	    
+    ____    U  ___ u   U  ___ u  ____    ____   __   __U _____ u  _    
+U /"___|u   \/"_ \/    \/"_ \/ |  _"\U | __")u \ \ / /\| ___"|/U|"|u  
+\| |  _ /   | | | |    | | | |/| | | |\|  _ \/  \ V /  |  _|"  \| |/  
+ | |_| |.-,_| |_| |.-,_| |_| |U| |_| |\| |_) | U_|"|_u | |___   |_|   
+  \____| \_)-\___/  \_)-\___/  |____/ u|____/    |_|   |_____|  (_)   
+  _)(|_       \\         \\     |||_  _|| \\_.-,//|(_  <<   >>  |||_  
+ (__)__)     (__)       (__)   (__)_)(__) (__)\_) (__)(__) (__)(__)_)                                                      
+                                                          
+"""
+        ## You can add your code or functions here
+        loop=False # This will make the while loop to end as not value of loop is set to False
+    else:
+        # Any integer inputs other than values 1-5 we print an error message
+        choice = raw_input("Wrong option selected. Press Any Key to Go Back to Main Menu ")
+
+        			
+        			
+        			
+        			
+        			
+        			
+        			
+        			
+        			
+        
