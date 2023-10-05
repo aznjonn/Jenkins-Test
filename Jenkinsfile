@@ -1,21 +1,33 @@
 pipeline {
   agent any
   stages {
-    stage('Create instance (ls)') {
+    stage('Check for a file on system') {
       steps {
-        sh 'ls -l'
+        sh 'ls -l /Users/johnsontran/Desktop/deleteme.txt'
       }
     }
 
-    stage('error') {
+    stage('print message test') {
       steps {
         echo 'this is the second step test'
       }
     }
 
-    stage('finish (hostname)') {
+    stage('hostname') {
       steps {
-        sh 'hostname -a'
+        sh 'hostname'
+      }
+    }
+
+    stage('cpu check') {
+      steps {
+        sh 'top'
+      }
+    }
+
+    stage('Finished') {
+      steps {
+        echo 'Competed the Jenkins Job!'
       }
     }
 
