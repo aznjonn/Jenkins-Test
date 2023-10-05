@@ -19,9 +19,9 @@ pipeline {
       }
     }
 
-    stage('cpu check') {
+    stage('disk file check') {
       steps {
-        sh 'top'
+        sh 'df -h'
       }
     }
 
