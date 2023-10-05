@@ -3,13 +3,11 @@ pipeline {
   stages {
     stage('Create instance (ls)') {
       steps {
-        sh '''#!/bin/bash
-
-ls -l '''
+        sh 'ls -l'
       }
     }
 
-    stage('') {
+    stage('error') {
       steps {
         echo 'this is the second step test'
       }
