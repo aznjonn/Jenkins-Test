@@ -1,5 +1,11 @@
 pipeline {
     agent any
+    options {
+       ansiColor('xterm')
+    }
+    parameters {
+        choice(name: 'Command', choices: ['uptime','df','du'],description: 'Select Linux command')
+    }
     stages {
         stage('Check for a file on system') {
             steps {
