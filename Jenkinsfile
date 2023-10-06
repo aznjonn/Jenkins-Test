@@ -1,40 +1,52 @@
 pipeline {
-    agent any
-    options {
-       ansiColor('xterm')
+  agent any
+  stages {
+    stage('Check for a file on system') {
+      steps {
+        sh 'ls -l /Users/johnsontran/Desktop/deleteme.txt'
+      }
     }
-    parameters {
-        choice(name: 'Command', choices: ['uptime','df','du'],description: 'Select Linux command')
+
+    stage('print message test') {
+      steps {
+        echo 'this is the second step test'
+      }
     }
-    stages {
-        stage('Check for a file on system') {
-            steps {
-                sh 'ls -l /Users/johnsontran/Desktop/deleteme.txt'
-            }
-        }
 
-        stage('print message test') {
-            steps {
-                echo 'this is the second step test'
-            }
-        }
+    stage('hostname') {
+      steps {
+        sh 'hostname'
+      }
+    }
 
-        stage('hostname') {
-            steps {
-                sh 'hostname'
-            }
-        }
-
+    stage('disk file check') {
+      parallel {
         stage('disk file check') {
-            steps {
-                sh 'df -h'
-            }
+          steps {
+            sh 'df -h'
+          }
         }
 
-        stage('Finished') {
-            steps {
-                echo 'Competed the Jenkins Job!'
-            }
+        stage('Message for space') {
+          steps {
+            echo 'Checking disk space'
+          }
         }
+
+      }
     }
+
+    stage('Finished') {
+      steps {
+        echo 'Competed the Jenkins Job!'
+      }
+    }
+
+  }
+  options {
+    ansiColor('xterm')
+  }
+  parameters {
+    choice(name: 'Command', choices: ['uptime','df','du'], description: 'Select Linux command')
+  }
 }
