@@ -24,6 +24,8 @@ pipeline {
                     def output = sh(returnStdout: true, script: 'pwd')
                     echo "Output: ${output}"
                 }
+            }
+        }
 
         stage('Check for a file on system') {
             steps {
