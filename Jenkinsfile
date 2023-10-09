@@ -6,17 +6,7 @@ pipeline {
     parameters {
         choice(name: 'Command', choices: ['uptime','df','du'],description: 'Select Linux command')
     }
-
     stages {
-        stage('Confirmation') {
-            steps {
-                script {
-                    timeout(time: 10, unit: 'MINUTES') {
-                        input "CAUTION! Do you want to run pre-push in ${params.Command}?"
-                }
-              }
-          }
-      }
         stage('Check for a file on system') {
             steps {
                 sh 'ls -l /Users/johnsontran/Desktop/deleteme.txt'
