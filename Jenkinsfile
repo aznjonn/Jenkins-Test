@@ -6,6 +6,16 @@ pipeline {
         sh 'ls -l /Users/johnsontran/Desktop/deleteme.txt'
       }
     }
+    stages {
+        stage('Confirmation') {
+            steps {
+                script {
+                    timeout(time: 10, unit: 'MINUTES') {
+                        input "CAUTION! Do you want to run pre-push in ${params.Command}?"
+            }
+                }
+            }
+        }
 
     stage('print message test') {
       steps {
