@@ -12,11 +12,19 @@ pipeline {
             steps {
                 script {
                     timeout(time: 10, unit: 'MINUTES') {
-                        input "CAUTION! Do you want to run pre-push in ${params.Command}?"
+                        input "CAUTION! Do you continue to run this with Linux command ${params.Command}?"
                 }
               }
           }
       }
+
+        stage('Example') {
+            steps {
+                script {
+                    def output = sh(returnStdout: true, script: 'pwd')
+                    echo "Output: ${output}"
+                }
+
         stage('Check for a file on system') {
             steps {
                 sh 'ls -l /Users/johnsontran/Desktop/deleteme.txt'
