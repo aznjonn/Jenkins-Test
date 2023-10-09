@@ -1,62 +1,40 @@
 pipeline {
-  agent any
-  stages {
-    stage('Check for a file on system') {
-      steps {
-        sh 'ls -l /Users/johnsontran/Desktop/deleteme.txt'
-      }
-    // }
-    //   stages {
-    //       stage('Confirmation') {
-    //           steps {
-    //               script {
-    //                   timeout(time: 10, unit: 'MINUTES') {
-    //                       input "CAUTION! Do you want to run pre-push in ${params.Command}?"
-    //           }
-    //               }
-    //           }
-    //       }
-
-    stage('print message test') {
-      steps {
-        echo 'this is the second step test'
-      }
+    agent any
+    options {
+       ansiColor('xterm')
     }
-
-    stage('hostname') {
-      steps {
-        sh 'hostname'
-      }
+    parameters {
+        choice(name: 'Command', choices: ['uptime','df','du'],description: 'Select Linux command')
     }
+    stages {
+        stage('Check for a file on system') {
+            steps {
+                sh 'ls -l /Users/johnsontran/Desktop/deleteme.txt'
+            }
+        }
 
-    stage('disk file check') {
-      parallel {
+        stage('print message test') {
+            steps {
+                echo 'this is the second step test'
+            }
+        }
+
+        stage('hostname') {
+            steps {
+                sh 'hostname'
+            }
+        }
+
         stage('disk file check') {
-          steps {
-            sh 'df -h'
-          }
+            steps {
+                sh 'df -h'
+            }
         }
 
-        stage('Message for space') {
-          steps {
-            echo 'Checking disk space'
-          }
+        stage('Finished') {
+            steps {
+                echo 'Competed the Jenkins Job!'
+            }
         }
-
-      }
     }
-
-    stage('Finished') {
-      steps {
-        echo 'Competed the Jenkins Job!'
-      }
-    }
-
-  }
-  options {
-    ansiColor('xterm')
-  }
-  parameters {
-    choice(name: 'Command', choices: ['uptime','df','du'], description: 'Select Linux command')
-  }
 }
