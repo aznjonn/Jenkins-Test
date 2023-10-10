@@ -40,9 +40,18 @@ pipeline {
         }
 
         stage('Test Set Deployment Tags output and have it fail if Absent') {
-            steps {
-                sh 'cat /Users/johnsontran/Desktop/Jenkins/Jenkins-Test/setDeploymentTagsOutput.txt'
-            }
+            parallel {
+                stage('Get Output of Tags') {
+                    steps {
+                        sh "cat /Users/johnsontran/Desktop/Jenkins/Jenkins-Test/setDeploymentTagsOutput.txt"
+                    }
+                }
+                stage('Check for Absent') {
+                    steps {
+                        sh "cat /Users/johnsontran/Desktop/Jenkins/Jenkins-Test/setDeploymentTagsOutput.txt |grep -i Absent"
+                    }
+                }   
+            }  
         }
 
         stage('print message test') {
