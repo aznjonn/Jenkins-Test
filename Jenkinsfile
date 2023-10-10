@@ -29,7 +29,13 @@ pipeline {
 
         stage('Check for a file on system') {
             steps {
-                sh 'ls -l /Users/johnsontran/Desktop/deleteme2.txt'
+                sh 'ls -l /Users/johnsontran/Desktop/Jenkins/Jenkins-Test/README.md'
+            }
+        }
+
+        stage('Run a Python3 Script on Macbook') {
+            steps {
+                sh 'python3 /Users/johnsontran/Desktop/Jenkins/Jenkins-Test/linux_commands.py'
             }
         }
 
