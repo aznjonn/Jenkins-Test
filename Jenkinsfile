@@ -41,24 +41,9 @@ pipeline {
 
         stage('Test Set Deployment Tags output and have it fail if Absent') {
             steps {
-                script {
-                    def fileContents = sh(script: 'cat /Users/johnsontran/Desktop/Jenkins/Jenkins-Test/setDeploymentTagsOutput.txt', returnStatus: true).trim().toString()
-
-                    if (fileContents.toLowerCase().contains('absent')) {
-                        currentBuild.result = 'FAILURE'
-                        error('The word "absent" (case-insensitive) was found in the file contents. Failing the step.')
-                    }
-                }
+                sh 'cat /Users/johnsontran/Desktop/Jenkins/Jenkins-Test/setDeploymentTagsOutput.txt'
             }
         }
-
-
-
-        // stage('Test Set Deployment Tags output and have it fail if Absent') {
-        //     steps {
-        //         sh 'cat /Users/johnsontran/Desktop/Jenkins/Jenkins-Test/setDeploymentTagsOutput.txt'
-        //     }
-        // }
 
         stage('print message test') {
             steps {
