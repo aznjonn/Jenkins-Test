@@ -18,7 +18,7 @@ pipeline {
           }
       }
 
-        stage('Example') {
+        stage('Path of current directory') {
             steps {
                 script {
                     def output = sh(returnStdout: true, script: 'pwd')
@@ -29,7 +29,7 @@ pipeline {
 
         stage('Check for a file on system') {
             steps {
-                sh 'ls -l /Users/johnsontran/Desktop/deleteme.txt'
+                sh 'ls -l /Users/johnsontran/Desktop/deleteme2.txt'
             }
         }
 
