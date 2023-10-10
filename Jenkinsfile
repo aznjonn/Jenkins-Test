@@ -44,12 +44,13 @@ pipeline {
 
         stage('Check for Absent') {
           steps {
-            sh '''if ! grep -i "Absent" /Users/johnsontran/Desktop/Jenkins/Jenkins-Test/setDeploymentTagsOutput.txt; then
-� echo "Word not found"
-� exit 1
-else
-� echo "Word found"
-fi
+            sh '''
+            if grep -i "Absent" /Users/johnsontran/Desktop/Jenkins/Jenkins-Test/setDeploymentTagsOutput.txt; then
+                echo "Word found"
+                exit 1
+            else
+                echo "Word not found"
+            fi
 '''
           }
         }
