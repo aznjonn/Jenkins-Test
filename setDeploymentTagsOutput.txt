@@ -1,0 +1,53 @@
++ python3 ezui_api.py run-api --cmd deployment-set-insync-services-tags --env istgfed --group istgfed-null --deployment deployment-0-us0 --s3url s3://druva-gov-artifact/insync/CU125_GOV_patch4/355977/artifact.json
+
+[2023-09-27 20:47:16,216] DEBUG: Command: deployment-set-insync-services-tags
+
+[2023-09-27 20:47:16,216] DEBUG: Command: deployment-set-insync-services-tags --env istgfed --group istgfed-null --deployment deployment-0-us0 --s3url s3://druva-gov-artifact/insync/CU125_GOV_patch4/355977/artifact.json
+
+[2023-09-27 20:47:16,321] DEBUG: Running external command, cmd:/home/ubuntu/devops/trunk/ezdeploy/src/ezdeploy.py deployment set-insync-container-tags --env istgfed --group istgfed-null --deployment deployment-0-us0  --s3url s3://druva-gov-artifact/insync/CU125_GOV_patch4/355977/artifact.json, cwd:/, user:johnson.tran, id:1695847837.0884635
+
+[2023-09-27 20:47:18,068] DEBUG: +------------------+----------------------------------+----------------------------------+---------------------+
+
+[2023-09-27 20:47:18,068] DEBUG: |     Service      |             Old tag              |             New tag              | Image status in AWS |
+
+[2023-09-27 20:47:18,069] DEBUG: +------------------+----------------------------------+----------------------------------+---------------------+
+
+[2023-09-27 20:47:18,069] DEBUG: | BaikalController |     airflow:release_v3.1.40      |     airflow:release_v3.1.40      |       Absent       |
+
+[2023-09-27 20:47:18,069] DEBUG: +------------------+----------------------------------+----------------------------------+---------------------+
+
+[2023-09-27 20:47:18,069] DEBUG: |  BaikalIterator  | journaliterator:release_v3.1.39  | journaliterator:release_v3.1.39  |       Present       |
+
+[2023-09-27 20:47:18,069] DEBUG: +------------------+----------------------------------+----------------------------------+---------------------+
+
+[2023-09-27 20:47:18,070] DEBUG: |   BaikalPresto   |      presto:release_v3.1.37      |      presto:release_v3.1.37      |       Present       |
+
+[2023-09-27 20:47:18,070] DEBUG: +------------------+----------------------------------+----------------------------------+---------------------+
+
+[2023-09-27 20:47:18,070] DEBUG: |   BaikalStream   |     baikal:baikal_stream_79      |     baikal:baikal_stream_79      |       Present       |
+
+[2023-09-27 20:47:18,070] DEBUG: +------------------+----------------------------------+----------------------------------+---------------------+
+
+[2023-09-27 20:47:18,071] DEBUG: | HplusMasterSpot  |    houston-plus:hplus-v2.21.0    |    houston-plus:hplus-v2.21.0    |       Present       |
+
+[2023-09-27 20:47:18,071] DEBUG: +------------------+----------------------------------+----------------------------------+---------------------+
+
+[2023-09-27 20:47:18,071] DEBUG: |   PulseMaster    |    pulse:PulseMaster-v1.12.0     |    pulse:PulseMaster-v1.12.0     |       Present       |
+
+[2023-09-27 20:47:18,073] DEBUG: +------------------+----------------------------------+----------------------------------+---------------------+
+
+[2023-09-27 20:47:18,073] DEBUG: |   sStunServer    | insync:CU125_GOV_patch3_ae6c3428 | insync:CU125_GOV_patch3_ae6c3428 |       Present       |
+
+[2023-09-27 20:47:18,073] DEBUG: +------------------+----------------------------------+----------------------------------+---------------------+
+
+[2023-09-27 20:47:18,073] DEBUG: | CappHplusMaster  |    houston-plus:hplus-v2.21.0    |    houston-plus:hplus-v2.21.0    |       Present       |
+
+[2023-09-27 20:47:18,073] DEBUG: +------------------+----------------------------------+----------------------------------+---------------------+
+
+[2023-09-27 20:47:18,074] DEBUG: | CappPulseMaster  |    pulse:PulseMaster-v1.12.0     |    pulse:PulseMaster-v1.12.0     |       Present       |
+
+[2023-09-27 20:47:18,074] DEBUG: +------------------+----------------------------------+----------------------------------+---------------------+
+
+[2023-09-27 20:47:18,201] DEBUG: --- Command ended, duration = 1s ---
+
+Running external command, cmd:/home/ubuntu/devops/trunk/ezdeploy/src/ezdeploy.py deployment set-insync-container-tags --env istgfed --group istgfed-null --deployment deployment-0-us0  --s3url s3://druva-gov-artifact/insync/CU125_GOV_patch4/355977/artifact.json, cwd:/, user:johnson.tran, id:1695847837.0884635+------------------+----------------------------------+----------------------------------+---------------------+|     Service      |             Old tag              |             New tag              | Image status in AWS |+------------------+----------------------------------+----------------------------------+---------------------+| BaikalController |     airflow:release_v3.1.40      |     airflow:release_v3.1.40      |       Present       |+------------------+----------------------------------+----------------------------------+---------------------+|  BaikalIterator  | journaliterator:release_v3.1.39  | journaliterator:release_v3.1.39  |       Present       |+------------------+----------------------------------+----------------------------------+---------------------+|   BaikalPresto   |      presto:release_v3.1.37      |      presto:release_v3.1.37      |       Present       |+------------------+----------------------------------+----------------------------------+---------------------+|   BaikalStream   |     baikal:baikal_stream_79      |     baikal:baikal_stream_79      |       Present       |+------------------+----------------------------------+----------------------------------+---------------------+| HplusMasterSpot  |    houston-plus:hplus-v2.21.0    |    houston-plus:hplus-v2.21.0    |       Present       |+------------------+----------------------------------+----------------------------------+---------------------+|   PulseMaster    |    pulse:PulseMaster-v1.12.0     |    pulse:PulseMaster-v1.12.0     |       Present       |+------------------+----------------------------------+----------------------------------+---------------------+|   sStunServer    | insync:CU125_GOV_patch3_ae6c3428 | insync:CU125_GOV_patch3_ae6c3428 |       Present       |+------------------+----------------------------------+----------------------------------+---------------------+| CappHplusMaster  |    houston-plus:hplus-v2.21.0    |    houston-plus:hplus-v2.21.0    |       Present       |+------------------+----------------------------------+----------------------------------+---------------------+| CappPulseMaster  |    pulse:PulseMaster-v1.12.0     |    pulse:PulseMaster-v1.12.0     |       Present       |+------------------+----------------------------------+----------------------------------+---------------------+--- Command ended, duration = 

@@ -39,6 +39,26 @@ pipeline {
             }
         }
 
+        stage('Test Set Deployment Tags output and have it fail if Absent') {
+            steps {
+                script {
+                    def fileContents = sh(script: 'cat /Users/johnsontran/Desktop/Jenkins/Jenkins-Test/setDeploymentTagsOutput.txt', returnStatus: true)
+                    echo "File Contents:\n${fileContents}"
+
+                    if (fileContents.contains('Absent')) {
+                        currentBuild.result = 'FAILURE'
+                        error('The word "Absent" was found in the file contents. Failing the step.')
+                    }
+                }
+            }
+        }
+
+        // stage('Test Set Deployment Tags output and have it fail if Absent') {
+        //     steps {
+        //         sh 'cat /Users/johnsontran/Desktop/Jenkins/Jenkins-Test/setDeploymentTagsOutput.txt'
+        //     }
+        // }
+
         stage('print message test') {
             steps {
                 echo 'this is the second step test'
